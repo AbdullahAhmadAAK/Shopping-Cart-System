@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = []; // initialize cart array as session variable if not initialized yet}
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -17,10 +22,13 @@ session_start();
 </head>
 
 <body>
-        <nav class="nav justify-content-end bg-black">
-                <a class="nav-link" href="home.php">Home</a>
-                <a class="nav-link active" aria-current="page" href="#">Shopping Cart(Checkout)</a>
-                <a class="nav-link" href="orders.php">All Orders</a>
+        <nav class="navbar justify-content-end bg-light">
+                <a class="nav-link px-3" href="home.php">Home</a>
+                <a class="nav-link px-3 active" aria-current="page" href="#">Checkout</a>
+                <a class="nav-link px-3" href="product-crud.php">Product Manager</a>
+                <a class="nav-link px-3" href="stock_page.php">Stock</a>
+                <a class="nav-link px-3" href="orders.php">All Orders</a>
+                <a class="nav-link px-3" href="reports-page.php">Generate Report</a>
         </nav>
 
         <!-- dyanamically fill all selected cart items -->
@@ -56,7 +64,7 @@ session_start();
                                 <input id="c_phone_number_checkout" type="number" class="form-control">
                         </div>
 
-                        <a href="home.php" onclick="cancelOrder()"><button class="btn btn-danger">Cancel</button></a>
+                        <a href="home.php" onclick="clearCart()"><button class="btn btn-danger">Cancel</button></a>
                         <button class="btn btn-primary" onclick="checkoutOrder()">Checkout</button>
                 </div>
 
@@ -110,7 +118,7 @@ session_start();
                                                 document.getElementById("customer_form").classList.add("d-none");
 
                                                 // go to confirming-message.php
-                                                location.href = 'http://localhost/Internship-Suave-Solutions/shopping-cart-system-27June2023/confirming-message.php';
+                                                location.href = 'http://localhost/439-Internship-Work/shopping-cart-system-27June2023/confirming-message.php';
 
 
                                         }
@@ -144,12 +152,12 @@ session_start();
 
                 }
 
-                function cancelOrder() {
+                function clearCart() {
                         $.ajax({
                                 type: "GET",
                                 url: "controller.php",
                                 data: {
-                                        action: "cancel-order",
+                                        action: "clear-cart",
                                 },
                                 success: function(response) {
                                         // do nothing

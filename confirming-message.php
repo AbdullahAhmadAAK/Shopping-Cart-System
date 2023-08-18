@@ -19,17 +19,20 @@ session_start();
 </head>
 
 <body>
-        <nav class="nav justify-content-end bg-black">
-                <a class="nav-link" href="home.php">Home</a>
-                <a class="nav-link" href="cart.php">Shopping Cart(Checkout)</a>
-                <a class="nav-link" href="orders.php">All Orders</a>
+        <nav class="navbar justify-content-end bg-light">
+                <a class="nav-link px-3" href="home.php">Home</a>
+                <a class="nav-link px-3" href="cart.php">Checkout</a>
+                <a class="nav-link px-3" href="product-crud.php">Product Manager</a>
+                <a class="nav-link px-3" href="stock_page.php">Stock</a>
+                <a class="nav-link px-3" href="orders.php">All Orders</a>
+                <a class="nav-link px-3" href="reports-page.php">Generate Report</a>
         </nav>
 
         <div class="border border-dark bg-success p-5 m-5" id="confirming-message-box">
                 <h1 class="">Your order details:</h1>
 
 
-                <div id="details-area"></div>
+                <div id="confirming-message-details-area"></div>
 
                 <a href="home.php"><button class="btn btn-dark">Go back to Home Page</button> </a>
         </div>
@@ -44,7 +47,7 @@ session_start();
                                         action: "fill-confirming-message-page",
                                 },
                                 success: function(response) {
-                                        $("#details-area").html(response);
+                                        $("#confirming-message-details-area").html(response);
 
                                 },
                         })

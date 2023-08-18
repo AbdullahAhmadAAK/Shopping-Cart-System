@@ -2,6 +2,8 @@
 
 session_start();
 
+
+
 // anytime you turn back to home page, cart should be emptied
 // $_SESSION['cart'] = [];
 
@@ -27,10 +29,13 @@ if (!isset($_SESSION['cart'])) {
 </head>
 
 <body>
-        <nav class="nav justify-content-end bg-black">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                <a class="nav-link" href="cart.php">Shopping Cart(Checkout)</a>
-                <a class="nav-link" href="orders.php">All Orders</a>
+        <nav class="navbar justify-content-end bg-light">
+                <a class="nav-link px-3 active" aria-current="page" href="#">Home</a>
+                <a class="nav-link px-3" href="cart.php">Checkout</a>
+                <a class="nav-link px-3" href="product-crud.php">Product Manager</a>
+                <a class="nav-link px-3" href="stock_page.php">Stock</a>
+                <a class="nav-link px-3" href="orders.php">All Orders</a>
+                <a class="nav-link px-3" href="reports-page.php">Generate Report</a>
         </nav>
 
         <h1>Please select whatever items interest you, and choose quantity!</h1>
@@ -50,8 +55,8 @@ if (!isset($_SESSION['cart'])) {
 
                 ?>
                         shopping_cart.push({
-                                p_id: <?= $_SESSION['cart'][$i][0] ?>,
-                                p_quantity: <?= $_SESSION['cart'][$i][1] ?>
+                                p_id: <?= $_SESSION['cart'][$i]["cart_item_id"] ?>,
+                                p_quantity: <?= $_SESSION['cart'][$i]["cart_item_quantity"] ?>
                         })
                 <?php
                 }
@@ -62,10 +67,13 @@ if (!isset($_SESSION['cart'])) {
                         shopping_cart.forEach((order_item) => { // order item has id of products that has been selected in cart
                                 const quantity_field = document.getElementById("num_items_" + order_item["p_id"]);
                                 const buy_button = document.getElementById("buy_button_" + order_item["p_id"]);
+                                const add_cart_message_element = document.getElementById("add_cart_message_" + order_item["p_id"]);
 
                                 quantity_field.setAttribute("disabled", "");
                                 quantity_field.value = order_item["p_quantity"];
                                 buy_button.setAttribute("disabled", "");
+                                add_cart_message_element.classList.add("opacity-100");
+                                add_cart_message_element.classList.remove("opacity-0");
 
                         });
                 }
@@ -77,6 +85,8 @@ if (!isset($_SESSION['cart'])) {
                         const quantity_field = document.getElementById("num_items_" + item_id);
                         const buy_button = document.getElementById("buy_button_" + item_id);
                         const stock_quantity = document.getElementById("stock_quantity_item_" + item_id).innerHTML;
+                        const add_cart_message_element = document.getElementById("add_cart_message_" + item_id);
+
 
                         if (quantity > 0 && stock_quantity - quantity >= 0) {
                                 // do these actions only if valid input
@@ -88,6 +98,8 @@ if (!isset($_SESSION['cart'])) {
 
                                 buy_button.setAttribute("disabled", "");
                                 quantity_field.setAttribute("disabled", "");
+                                add_cart_message_element.classList.add("opacity-100");
+                                add_cart_message_element.classList.remove("opacity-0");
 
                                 $.ajax({
                                         type: "GET",

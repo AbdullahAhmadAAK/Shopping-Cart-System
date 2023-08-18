@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = []; // initialize cart array as session variable if not initialized yet}
+}
 ?>
 
 <!DOCTYPE html>
@@ -17,10 +21,13 @@ session_start();
 </head>
 
 <body>
-        <nav class="nav justify-content-end bg-black">
-                <a class="nav-link" href="home.php">Home</a>
-                <a class="nav-link" href="cart.php">Shopping Cart(Checkout)</a>
-                <a class="nav-link active" aria-current="page" href="#">All Orders</a>
+        <nav class="navbar justify-content-end bg-light">
+                <a class="nav-link px-3" href="home.php">Home</a>
+                <a class="nav-link px-3" href="cart.php">Checkout</a>
+                <a class="nav-link px-3" href="product-crud.php">Product Manager</a>
+                <a class="nav-link px-3" href="stock_page.php">Stock</a>
+                <a class="nav-link px-3 active" aria-current="page" href="#">All Orders</a>
+                <a class="nav-link px-3" href="reports-page.php">Generate Report</a>
         </nav>
 
         <h1>These are all the orders uptil now, in full detail:</h1>
@@ -29,7 +36,7 @@ session_start();
         <table class="table">
                 <thead class="border border-dark">
                         <tr>
-                                <th scope="col">Order ID</th>
+                                <th scope="col">Order #</th>
                                 <th scope="col">Customer Name</th>
                                 <th scope="col">Customer Email</th>
                                 <th scope="col">Total Price</th>
