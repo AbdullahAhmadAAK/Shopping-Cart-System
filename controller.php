@@ -305,20 +305,30 @@ if(isset($_POST['action']) && !empty($_POST["action"])){
 
                 if(!$error_name && !$error_description && !$error_image && !$error_price){
                         // update in db
-
+                        if($image_uploaded){
+                                $sql_img = ", p_picture_filename = ? ";
+                        } else{
+                                $sql_img = "";
+                        }
+                                
                         $sql = "UPDATE products
-                        SET p_name = ?, p_description = ?, p_price = ?, p_picture_filename = ?
+                        SET p_name = ?, p_description = ?, p_price = ? ". $sql_img ."
                         WHERE p_id = ?";
 
                         if( $stmt = $link->prepare($sql) ) {
                                 // bind
-                                $stmt->bind_param("ssisi", $param_name, $param_description, $param_price, $param_picture_filename, $param_id);
+                                if($image_uploaded){
+                                        $stmt->bind_param("ssisi", $param_name, $param_description, $param_price, $param_picture_filename, $param_id);
+                                } else{
+                                        $stmt->bind_param("ssii", $param_name, $param_description, $param_price, $param_id);
+                                }
 
                                 // set parameters 
                                 $param_name = $input_name;
                                 $param_description = $input_description;
                                 $param_price = $input_price;
-                                $param_picture_filename = $input_image;
+                                if($image_uploaded)
+                                        $param_picture_filename = $input_image;
                                 $param_id = $input_id;
                              
                                 // execute
