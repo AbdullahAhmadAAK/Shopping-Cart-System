@@ -118,7 +118,11 @@ if (!isset($_SESSION['cart'])) {
                                                 document.getElementById("customer_form").classList.add("d-none");
 
                                                 // go to confirming-message.php
-                                                location.href = 'http://localhost/439-Internship-Work/shopping-cart-system-27June2023/confirming-message.php';
+                                                var currentURL = window.location.href; // Get the current URL
+                                                var rootPath = currentURL.substring(0, currentURL.lastIndexOf('/'));     // Find the last occurrence of '/' to get the root directory
+                                                location_path = rootPath + "/confirming-message.php"; // construct location_path
+                                                // alert(location);
+                                                location.href = location_path;
 
 
                                         }
