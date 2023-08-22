@@ -690,15 +690,16 @@ if (( isset($_GET['action']) && !empty($_GET["action"])) ) {
                                 $sql_customer_insertion = "INSERT INTO customers ( c_name, c_email, c_phone ) VALUES ( '" . $_GET["customer_name"] . "', '" . $_GET["customer_email"] . "', '" . $_GET["customer_phone_number"] .  "' )";
                                 if (mysqli_query($link, $sql_customer_insertion)) {
                                         $customer_id_input = mysqli_insert_id($link);
+                                        $status_customer_verification = true;
                                 } else {
                                         echo "Error: " . $sql_customer_insertion . "<br>" . mysqli_error($link);
                                 }
 
                                 // customer is ready, can now add order by his nname
-                                $status_customer_verification = true;
+                                
                                 
                                 // get customer_id of already present customer in customers table
-                                $customer_id_input = $row['c_id'];
+                                // $customer_id_input = $row['c_id'];
 
                         }
                         // if 1 unique entry exists, can add entry by that customer 
