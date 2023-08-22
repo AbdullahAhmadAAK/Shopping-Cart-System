@@ -147,17 +147,17 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`p_id`, `p_name`, `p_description`, `p_price`, `p_picture_filename`) VALUES
-(2, 'T Shirt', 'very cool relaxin t shirt, made of nylon just for lahori summers', 400, ''),
-(3, 'Trousers', 'Wear the most comfortable trousers ever made in Pakistan. Get your cotton and denim jeans and trousers now, and feel like a boss!', 1100, ''),
-(4, 'Socks', 'Thin, comfy cotton socks just for you! Try now at Al Karam Studios.', 300, 'tomato.jpg'),
+(2, 'T Shirt', 'very cool relaxin t shirt, made of nylon just for lahori summers', 400, 'tshirt.jpg'),
+(3, 'Trousers', 'Wear the most comfortable trousers ever made in Pakistan. Get your cotton and denim jeans and trousers now, and feel like a boss!', 1100, 'trousers.jpg'),
+(4, 'Socks', 'Thin, comfy cotton socks just for you! Try now at Al Karam Studios.', 300, 'socks.jpg'),
 (5, 'Shorts', 'Tight fit shorts to make sure those fit legs are on display all the time. Adidas shorts on bulk sale.', 500, 'shorts.jpg'),
 (6, 'Shoes', 'Relaxed fitting shoes which will shape themselves to fit your sole. Never complain of toe pain again!', 1200, 'shoes.jpg'),
 (7, 'Paint Box', 'Berger premium paints, special emulsion assorted in all colors just for you. One box of 200 ml.', 2500, 'paint-box.jpg'),
 (8, 'Dress Shirt', "If you've run out of affordable items to wear to your office, this shirt is just the right one for you!", 800, 'full-sleeve-shirt.jpg'),
 (9, 'Badminton Shuttles Box', 'Wecan shuttles imported from Wuhan of China. Extremely good quality, durable and fun to play with. 1 box of 12 shuttles.', 3200, 'badminton-shuttles-box.jpg'),
 (10, 'Badminton Racquet', 'Yonex Arcsaber 9000, crafted from graphite and high-end carbon with the latest technologies.', 4500, 'badminton-racquet.jpg'),
-(27, 'Badminton Net', 'ass sa sasa assa', 1, 'badminton-net.jpg'),
-(29, 'tamatar', 'sasasaa', 1, 'tomato.jpg');
+(27, 'Badminton Net', 'ass sa sasa assa', 8000, 'badminton-net.jpg'),
+(29, 'Test Shoes', 'fake shoes, not really real. this is a scam', 100, 'shoes.jpg');
 
 -- --------------------------------------------------------
 
